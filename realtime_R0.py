@@ -442,3 +442,5 @@ for i, (state_name, result) in enumerate(final_results.groupby('state')):
 fig.tight_layout()
 fig.set_facecolor('w')
 st.pyplot(fig)
+
+st.write("[Data Source](https://www.covid19india.org/)")
