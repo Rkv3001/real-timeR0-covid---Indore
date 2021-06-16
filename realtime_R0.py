@@ -326,11 +326,42 @@ temp_data = get_data()
 
 states = data_cleaning(temp_data)
 
+st.title('Indore & Madhya Pradesh Daily Cases')
 
-st.title('Indore & MP India Total Cases')
+line_plot = states.reset_index()
 
+indore_line = line_plot[line_plot.state == 'INDORE']#[['date','positive']]
+indore_line['actual_cases'] = indore_line.positive.diff().fillna(indore_line.positive)
+
+mp_line = line_plot[line_plot.state == 'MP']#[['date','positive']]
+mp_line['actual_cases'] = mp_line.positive.diff().fillna(mp_line.positive)
+
+
+
+updated_data = pd.concat([indore_line, mp_line])
+updated_data.rename(columns={'positive':'cumulative_cases'}, inplace = True)
+updated_data = updated_data[['state', 'date', 'actual_cases', 'cumulative_cases']]
+
+
+#Adding data
 st.write("Data")
-st.write(states.reset_index())
+st.write(updated_data) #
+
+
+
+st.title("Indore and Madhya Pradesh Daily Cases Plot")
+
+fig, ax = plt.subplots(nrows=2, ncols=1, figsize=(15,8))
+
+ax[0].plot(indore_line.date, indore_line.actual_cases)
+ax[0].set_title('Indore Daily Cases')
+
+ax[1].plot(mp_line.date, mp_line.actual_cases)
+ax[1].set_title('Madhya Pradesh Daily Cases')
+st.pyplot(fig)
+
+
+
 
 # We create an array for every possible value of Rt
 R_T_MAX = 12
@@ -413,20 +444,9 @@ for state_name, result in results.items():
 print('Done.')
 
 
-st.title("MP and Indore Covid Cases")
-line_plot = states.reset_index()
 
-indore_line = line_plot[line_plot.state == 'INDORE'][['date','positive']]
-mp_line = line_plot[line_plot.state == 'MP'][['date','positive']]
 
-fig, ax = plt.subplots(nrows=2, ncols=1, figsize=(15,8))
 
-ax[0].plot(indore_line.date, indore_line.positive)
-ax[0].set_title('Indore Positive Cases')
-
-ax[1].plot(mp_line.date, mp_line.positive)
-ax[1].set_title('MP Positive Cases')
-st.pyplot(fig)
 
 
 
