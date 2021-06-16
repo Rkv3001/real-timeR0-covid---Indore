@@ -362,7 +362,7 @@ st.pyplot(fig)
 
 
 
-
+st.markdown('# Real time **R0** Indore and Madhya Pradesh')
 # We create an array for every possible value of Rt
 R_T_MAX = 12
 r_t_range = np.linspace(0, R_T_MAX, R_T_MAX*100+1)
@@ -450,7 +450,7 @@ print('Done.')
 
 
 
-st.markdown('# Real time **R0** Indore and Madhya Pradesh')
+#st.markdown('# Real time **R0** Indore and Madhya Pradesh')
 ncols = 1
 nrows = 2
 
