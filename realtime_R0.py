@@ -22,7 +22,7 @@ st.cache(ttl=60*60*24*2, allow_output_mutation = True)
 def get_data():
 	# Column name for data in extracted using API
 	col_name = ['agebracket', 'contractedfromwhichpatientsuspected', 'currentstatus', 
-	            'dateannounced', 'detectedcity', 'detecteddistrict', 'detectedstate', 
+	            'dateannounced', 'detecteddistrict', 'detectedstate', 
 	            'gender', 'nationality', 'notes', 'numcases', 'patientnumber', 
 	            'source1', 'source2', 'source3','statecode', 'statepatientnumber', 
 	            'statuschangedate', 'typeoftransmission']
