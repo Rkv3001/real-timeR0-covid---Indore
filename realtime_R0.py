@@ -30,7 +30,7 @@ def get_data():
 	# A temperary data frame for storing data
 	temp_data = pd.DataFrame(columns=col_name)
 
-	for i in tqdm(range(1,34)):
+	for i in tqdm(range(1,33)):
 	    url = "https://api.covid19india.org/raw_data"+str(i)+".json"
 	    response = requests.request("GET", url)
 
